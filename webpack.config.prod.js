@@ -1,17 +1,17 @@
-const path = require('path') // nativo de Node.js
+const path = require('path'); // nativo de Node.js
+const CleanPlugin = require('clean-webpack-plugin');
 
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: './src/app.ts',
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'), // igual _dirname
-        publicPath: 'dist' // habilita el hot reloading de WP-dev-server
     },
     // para que webpack use los .map que genera el comando tsc de typescript
     // y a su vez, para habilitar el debuging en el navegador desde los
     // archivos originales
-    devtool: 'inline-source-map',
+    devtool: 'none', // DIFERENTE EN DEV (webpack.config.js)
     module: {
         rules: [
             {
@@ -23,5 +23,9 @@ module.exports = {
     },
     resolve: {
         extensions: ['.ts', '.js']
-    }
+    },
+    plugins: [
+        // antes de generar el bundle, limpie todo lo referente al output
+        new CleanPlugin.CleanWebpackPlugin()
+    ]
 };
