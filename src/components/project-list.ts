@@ -21,7 +21,7 @@ implements DragTarget {
     @autobind
     dragOverHandler(event: DragEvent) {
         if (event.dataTransfer && event.dataTransfer.types[0] === 'text/plain') {
-            event.preventDefault(); // Esto me genera un error de refresh
+            event.preventDefault(); // Aqui firefox explota
             const listEl = this.element.querySelector('ul')!
             listEl.classList.add('droppable')
         }

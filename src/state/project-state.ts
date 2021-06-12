@@ -12,7 +12,7 @@ class State<T> {
 
 }
 
-export class ProjectState extends State<Project> {
+class ProjectState extends State<Project> {
     private projects: Project[] = [];
     private static instance: ProjectState;
 
